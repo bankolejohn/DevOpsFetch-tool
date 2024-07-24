@@ -37,6 +37,7 @@ sudo systemctl start devopsfetch.service
 # Create a logrotate configuration for devopsfetch logs
 sudo bash -c 'cat << EOF > /etc/logrotate.d/devopsfetch
 /var/log/devopsfetch.log {
+    su root adm
     daily
     rotate 7
     compress
