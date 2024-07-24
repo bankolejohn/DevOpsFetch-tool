@@ -15,13 +15,13 @@ Prerequisites
 
 Ensure you have the following installed on your system:
 
-Bash (v4.0 or later)
-netstat for network statistics (usually part of the net-tools package)
-Docker
-Nginx
-column for table formatting
-awk for text processing
-journalctl for viewing logs (part of systemd)
+- Bash (v4.0 or later)
+- netstat for network statistics (usually part of the net-tools package)
+- Docker
+- Nginx
+- column for table formatting
+- awk for text processing
+- journalctl for viewing logs (part of systemd)
 
 Installation
 
