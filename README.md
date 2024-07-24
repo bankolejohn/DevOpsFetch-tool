@@ -142,7 +142,7 @@ sudo systemctl start devopsfetch.service
 ```
 Enable the Service to Start on Boot:
 
-```
+```bash
 sudo systemctl enable devopsfetch.service
 ```
 
