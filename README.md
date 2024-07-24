@@ -323,17 +323,102 @@ exec >> "$LOG_FILE" 2>&1
 With these steps, you will have set up a robust logging mechanism for the devopsfetch script, ensuring logs are rotated and managed efficiently, preventing disk space issues and keeping log data organized.
 
 
+- **How to check if log rotatation has been implemented**
+
+To check if log rotation has been implemented and is working correctly, you can verify the presence of the logrotate configuration file, inspect the rotated log files, and review the logrotate status. Here's how you can do it:
+
+**1. Verify the Logrotate Configuration File**
+Ensure that the logrotate configuration file for devopsfetch exists in /etc/logrotate.d/.
+
+```bash
+sudo cat /etc/logrotate.d/devopsfetch
+```
+
+This should display the configuration you set up, which might look like this:
+
+
+```
+/var/log/devopsfetch.log {
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+    create 0640 root adm
+}
+```
+
+
+**2. Check for Rotated Log Files**
+
+Logrotate should create rotated log files in the same directory as the original log file. The rotated log files will have extensions like .1, .2, and so on, and may be compressed (e.g., .gz).
+
+List the contents of the log directory:
+
+```bash
+ls -lh /var/log/devopsfetch.log*
+```
+You should see files like devopsfetch.log.1, devopsfetch.log.2.gz, etc.
+
+3. Manually Trigger Logrotate
+You can manually trigger logrotate to see if it processes the devopsfetch log file correctly. This can be useful for testing your logrotate configuration.
+
+Run logrotate with the -f (force) flag to force it to rotate the logs:
+
+```bash
+sudo logrotate -f /etc/logrotate.d/devopsfetch
+```
+
+After running this command, check the /var/log/ directory again to see if a new rotated log file was created.
+
+4. Check Logrotate Status
+   
+Logrotate logs its status to ```/var/lib/logrotate/status``` . You can check this file to see the last time logrotate processed your logs.
+
+```bash
+sudo cat /var/lib/logrotate/status
+```
+Look for entries related to /var/log/devopsfetch.log to verify that logrotate has processed your log file.
+
+Example Commands
+Here are the steps in command form:
+
+Verify the logrotate configuration:
+
+```bash
+sudo cat /etc/logrotate.d/devopsfetch
+```
+
+List rotated log files:
+
+```bash
+ls -lh /var/log/devopsfetch.log*
+```
+
+Manually trigger logrotate:
+
+```bash
+sudo logrotate -f /etc/logrotate.d/devopsfetch
+```
+
+Check logrotate status:
+
+```bash
+sudo cat /var/lib/logrotate/status
+```
+Summary
+
+- Verify Configuration: Ensure the configuration file exists and is correctly set up.
+- Check Files: Look for rotated log files in the /var/log/ directory.
+- Manual Test: Manually trigger logrotate to see if it works as expected.
+- Status Check: Review the logrotate status to confirm it has processed your logs.
+
+  
+These steps should help you confirm that log rotation is implemented and working correctly for your devopsfetch logs.
 
 
 
-
-
-
-
-
-
-
-# Flask Web App Tutorial
+## To launch the Flask Web App
 
 ## Setup & Installation
 
