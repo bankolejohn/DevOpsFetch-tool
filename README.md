@@ -206,6 +206,20 @@ The devopsfetch script provides a comprehensive set of tools for server informat
 
 
 
+
+
+
+
+
+
+
+
+
+
+####### Tip
+
+
+
     
      
 - **Creating a Logrotate Configuration File for devopsfetch**
