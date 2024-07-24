@@ -92,9 +92,18 @@ function show_users {
 }
 
 # Function to display activities within a specified time range
+
 function show_time_range {
-  sudo journalctl --since "$1" --until "$2"
+  if [[ -z "$2" ]]; then
+    sudo journalctl --since "$1" --until "$1 23:59:59"
+  else
+    sudo journalctl --since "$1" --until "$2"
+  fi
 }
+
+# function show_time_range {
+#   sudo journalctl --since "$1" --until "$2"
+# }
 
 # Display help message
 function show_help {
