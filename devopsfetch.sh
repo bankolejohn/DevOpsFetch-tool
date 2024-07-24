@@ -1,5 +1,7 @@
 #!/bin/bash
 
+LOG_FILE="/var/log/devopsfetch.log"
+
 # Function to display all active ports and services
 function show_ports {
   if [ -z "$1" ]; then
@@ -22,12 +24,61 @@ function show_docker {
   fi
 }
 
-# Function to display all Nginx domains and their ports
+# Function to display all Nginx domains, proxies, and configuration files in table format
 function show_nginx {
   if [ -z "$1" ]; then
-    sudo nginx -T | grep -E "server_name|listen"
+    sudo nginx -T | awk '
+      BEGIN {
+        print "Domain\tProxy\tConfiguration File";
+        RS="}";
+        FS="\n"
+      }
+      /server_name/ {
+        domain="";
+        proxy="";
+        conf_file="";
+        for(i=1; i<=NF; i++) {
+          if ($i ~ /server_name/) {
+            split($i, arr, " ");
+            domain=arr[2];
+          }
+          if ($i ~ /proxy_pass/) {
+            split($i, arr, " ");
+            proxy=arr[2];
+          }
+          if ($i ~ /# configuration file/) {
+            split($i, arr, " ");
+            conf_file=arr[4];
+          }
+        }
+        if (domain) {
+          print domain "\t" proxy "\t" conf_file;
+        }
+      }' | column -t -s $'\t'
   else
-    sudo nginx -T | awk '/server_name '"$1"'/,/}/'
+    sudo nginx -T | awk -v domain="$1" '
+      BEGIN {
+        print "Domain\tProxy\tConfiguration File";
+        RS="}";
+        FS="\n"
+      }
+      /server_name/ && $0 ~ domain {
+        for(i=1; i<=NF; i++) {
+          if ($i ~ /server_name/) {
+            split($i, arr, " ");
+            domain=arr[2];
+          }
+          if ($i ~ /proxy_pass/) {
+            split($i, arr, " ");
+            proxy=arr[2];
+          }
+          if ($i ~ /# configuration file/) {
+            split($i, arr, " ");
+            conf_file=arr[4];
+          }
+        }
+        print domain "\t" proxy "\t" conf_file;
+      }' | column -t -s $'\t'
   fi
 }
 
