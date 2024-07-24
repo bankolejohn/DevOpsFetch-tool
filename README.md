@@ -2,12 +2,12 @@
 _**devopsfetch**_ is a Bash script designed for server information retrieval and monitoring. It collects and displays system information including active ports, user logins, Nginx configurations, Docker images, and container statuses. Additionally, it supports continuous monitoring with logging.
 
 ## Features
-Display all active ports and services or details of a specific port.
-List all Docker images and containers or details of a specific container.
-Display all Nginx domains, proxies, and configuration files in table format or details of a specific domain.
-List all users and their last login times or details of a specific user.
-Display activities within a specified time range.
-Continuous monitoring with logging and log rotation.
+- Display all active ports and services or details of a specific port.
+- List all Docker images and containers or details of a specific container.
+- Display all Nginx domains, proxies, and configuration files in table format or details of a specific domain.
+- List all users and their last login times or details of a specific user.
+- Display activities within a specified time range.
+- Continuous monitoring with logging and log rotation.
 
 ### 1. Installation and Configuration Steps
 
@@ -46,12 +46,15 @@ Ensure you have the necessary permissions to run the commands used in the script
 
 ### 2. Usage Examples for Each Command-Line Flag
 Help
+
 Display usage instructions:
 
-bash
-Copy code
+```bash
 devopsfetch -h
+```
+
 Ports
+
 Display all active ports and services:
 
 ```bash
@@ -63,6 +66,7 @@ Display details of a specific port (e.g., port 80):
 devopsfetch -p 80
 ```
 Docker
+
 List all Docker images and containers:
 
 ```bash
@@ -74,6 +78,7 @@ Display details of a specific Docker container (e.g., container my_container):
 devopsfetch -d my_container
 ```
 Nginx
+
 Display all Nginx domains, proxies, and configuration files in table format:
 
 ```bash
@@ -85,6 +90,7 @@ Display details of a specific Nginx domain (e.g., example.com):
 devopsfetch -n example.com
 ```
 Users
+
 List all users and their last login times:
 
 ```bash
@@ -137,9 +143,10 @@ sudo systemctl daemon-reload
 Start the Service:
 ```
 
-``
+```
 sudo systemctl start devopsfetch.service
 ```
+
 Enable the Service to Start on Boot:
 
 ```bash
