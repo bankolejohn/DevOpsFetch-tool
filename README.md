@@ -16,15 +16,16 @@ Add Configuration Directives:
 
 Add the following content to the devopsfetch file. This configuration tells logrotate how to handle the /var/log/devopsfetch.log file.
 
-
-```/var/log/devopsfetch.log {
+```
+/var/log/devopsfetch.log {
     daily                # Rotate the log file daily
     rotate 7             # Keep 7 days' worth of backlogs
     compress             # Compress the rotated log files
     missingok            # Do not issue an error if the log file is missing
     notifempty           # Do not rotate the log if it is empty
     create 0640 root adm # Create a new log file with specified permissions
-}```
+}
+```
 
 
 Here is an explanation of each directive:
