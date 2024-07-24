@@ -216,7 +216,7 @@ The devopsfetch script provides a comprehensive set of tools for server informat
 
 
 
-####### Tip
+#### Useful Tip
 
 
 
