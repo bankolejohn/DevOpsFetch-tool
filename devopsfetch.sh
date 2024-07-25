@@ -1,7 +1,7 @@
 #!/bin/bash
 
 LOG_FILE="/var/log/devopsfetch.log"
-exec >> "$LOG_FILE" 2>&1
+# exec >> "$LOG_FILE" 2>&1
 
 # Function to display all active ports and services
 function show_ports {
